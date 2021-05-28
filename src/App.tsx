@@ -2,6 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+
+
+
+
+
+
+
 let asdsa: number | null = 10
 const bame: string = 'BARABASHJA'
 
@@ -14,6 +22,30 @@ let strMass2: string[] = ['jej', 'kekd']
 type doorType= typeof door
 
 let luk: doorType = 'open'
+
+//const appReducer = (state: stateType=init, action:any):returnType => {} //:ВОЗВРАЩАЕМЫЙ ТИП
+
+type initNewsType =
+  {
+    newsList: [
+      {
+        owner: {
+          id: string | null,
+          email: string | null,
+          title: string | null,
+          picture: string | null,
+          firstName: string | null,
+          lastName: string | null,
+        },
+        tags: Array<string> | null,
+        text: string | null,
+        image: string | null,
+        likes: number | null,
+        link: string | null,
+        publishDate: string | null,
+      },
+    ],
+  }
 
 //задаём тип
 type UserType =
@@ -64,12 +96,41 @@ let ine : changeble = {type: test2
 
 
 function App() {
+
+  const drawProt = ()=>
+  {
+    let head = {
+      glasses: 1
+    };
+    
+    let table = {
+      pen: 3,
+      __proto__: head,
+    };
+    
+    let bed = {
+      sheet: 1,
+      __proto__: table,
+    };
+    
+    let pockets = {
+      money: 2000,
+      __proto__: bed,
+    };
+
+    return (
+      <div> {pockets.money}</div>
+    )
+  }
+
+
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {asdsa}  {typeIncluded(10)}
+           {typeIncluded(10)}
         </p>
         <a
           className="App-link"
