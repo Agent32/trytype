@@ -1,0 +1,119 @@
+.main 
+{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+ 
+
+}
+
+.field
+{
+    
+}
+
+
+
+.erors
+{
+    border: 2px solid red;
+    padding-bottom: 4px;
+
+}
+
+
+
+.main .heading
+{
+   color: gray;
+   height: auto;
+   width: 1fr;
+   background-color:rgb(207, 207, 207);
+   border-left:4px solid gray;
+   padding-left:10px;
+   padding-right:10px;
+   border-radius: 4px;
+   Font-weight: bold;
+   padding-top:5px;
+   padding-bottom:5px;
+}
+
+.main  .actionLine
+{
+
+   
+   height: auto;
+   width: 1fr;
+   background-color:white;
+   margin-top: 20px;
+   padding:10px;
+   border: 2px solid gray;
+   border-radius: 4px;
+   Font-weight: bold;
+}
+
+.main  .actionLine button
+{
+
+   background-color: rgb(0, 132, 255);
+   border-radius: 2px;
+   border: none;
+   color:white;
+   width: 80px;
+   height: 30px;
+}
+
+.main  .invoicesListStyle
+{
+   
+
+
+   height: auto;
+   width: 1fr;
+   background-color:white;
+   margin-top: 20px;
+   padding:10px;
+   border: 2px solid gray;
+   border-radius: 4px;
+   font-weight: normal;
+}
+
+
+
+.main  .invoicesListStyle .Colum 
+{
+  
+   justify-content: space-between;
+
+   padding-right: 50px;
+height: auto;
+text-align: center;
+
+}
+
+.main  .headStyle
+{
+ background-color:darkgray;
+
+}
+
+.main  .invoicesListStyle .Colum .number
+{
+   color:rgb(0, 132, 255);
+   padding: 5px;
+    
+
+}
+
+.main  .invoicesListStyle .Colum Field
+{  overflow: hidden;
+   white-space: nowrap;
+   text-overflow:ellipsis;
+  
+   width: 120px;
+   height: 30px;
+  
+   margin-left: 50px;
+  
+
+}
