@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { serverAL } from "../api/api";
 import { invoiceType, profileMainType } from "./types/storeTypes";
 /* import { serverAL } from "../api/api";
@@ -7,6 +8,7 @@ import { changeLoadStatus } from "./commonReduser"; */
 
 const GET_INVOICES = "GET-INVOICES/invoicesPart";
 const CHANGE_SHOWING_FORM = "CHANGE-SHOWING-FORM/invoicesPart";
+const PUSH_NEW_INVOICE = "PUSH-NEW-INVOICE/invoicesPart";
 // ========================================
 
 
@@ -34,27 +36,38 @@ type changeShowingCreturn = {
   type: typeof CHANGE_SHOWING_FORM;
 };
 
+type pushNewInvoicereturn = {
+  type: typeof PUSH_NEW_INVOICE;
+  data: invoiceType;
+};
+
 type setInvoicesType = (data: Array<invoiceType>) => getInvoicesListACreturn;
 type changeShowingPanelType = () => changeShowingCreturn;
-
+type pushNewInvoiceType = (data: invoiceType) => pushNewInvoicereturn;
 
 
 export const setInvoices: setInvoicesType = (data) =>
-  ({
-    type: GET_INVOICES,
-    data,
-  } as const);
+({
+  type: GET_INVOICES,
+  data,
+} as const);
 
 
-  export const changeShowingPanel: changeShowingPanelType = () =>
-  ({
-    type: CHANGE_SHOWING_FORM,
-  } as const);
+export const changeShowingPanel: changeShowingPanelType = () =>
+({
+  type: CHANGE_SHOWING_FORM,
+} as const);
 
+
+export const pushNewInvoice: pushNewInvoiceType = (data) =>
+({
+  type: PUSH_NEW_INVOICE,
+  data,
+} as const);
 // ========================================
 function invoicesReducer(
   state = init,
-  action: getInvoicesListACreturn | changeShowingCreturn
+  action: getInvoicesListACreturn | changeShowingCreturn | pushNewInvoicereturn
 ): profileMainType {
   switch (action.type) {
     // --------------
@@ -66,7 +79,9 @@ function invoicesReducer(
     case CHANGE_SHOWING_FORM: {
       return _changeNewFormShow(state, action);
     }
-
+    case PUSH_NEW_INVOICE: {
+      return _pushNewInvoice(state, action);
+    }
 
     // --------------
     default:
@@ -74,7 +89,7 @@ function invoicesReducer(
   }
 }
 // ========================================
-//, owner: ...action.data.owner
+
 // ---------------------------------------
 function _setInvoicesList(
   state: profileMainType,
@@ -92,7 +107,17 @@ function _changeNewFormShow(
 ) {
   return {
     ...state,
-    invoiceSettings: {needShowForm: !state.invoiceSettings.needShowForm},
+    invoiceSettings: { needShowForm: !state.invoiceSettings.needShowForm },
+  };
+}
+
+function _pushNewInvoice(
+  state: profileMainType,
+  action: pushNewInvoicereturn
+) {
+  return {
+    ...state,
+    invoiceList: [...state.invoiceList, action.data],
   };
 }
 // ---------------------------------------
@@ -100,24 +125,22 @@ function _changeNewFormShow(
 // ========================================
 export const getInvoicesTC = () => async (dispatch: Function) => {
   try {
-    //dispatch(changeLoadStatus(true));
     const newsAnswData = await serverAL.getInvoicesList();
     dispatch(setInvoices(newsAnswData));
-    // dispatch(changeLoadStatus(false));
   } catch (err) {
     console.log(err);
   }
 };
 // ---------------------------------------
-export const sendNewInvoice = (data: any) => async (dispatch: Function) => {
+export const sendNewInvoiceTC = (data: invoiceType) => async (dispatch: Function) => {
   try {
-    //dispatch(changeLoadStatus(true));
-    const newsAnswData = await serverAL.newInvoice(data);
 
-    // dispatch(setInvoices(newsAnswData));
-    // dispatch(changeLoadStatus(false));
+    const newsAnswData: invoiceType = await serverAL.newInvoice(data);
+    dispatch(pushNewInvoice(newsAnswData))
+    dispatch(changeShowingPanel())
+
   } catch (err) {
-    console.log(err);
+    console.log(err); //redirect-eror-page
   }
 };
 

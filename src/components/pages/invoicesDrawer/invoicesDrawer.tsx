@@ -10,7 +10,7 @@ export type propsType = {
   getInvoicesTC: Function;
   changeShowingPanel: Function;
   invoiceSettings: invoicesSettingsType;
-  sendInvoicer: Function;
+  sendNewInvoiceTC: Function
 };
 
 const InvoicesDrawer = (props: propsType) => {
@@ -57,7 +57,7 @@ const InvoicesDrawer = (props: propsType) => {
       <HeadingDrawer />
 
       {props.invoiceSettings.needShowForm 
-      ? (<InvoicesFormDrawer sendInvoicer={props.sendInvoicer} />) 
+      ? (<InvoicesFormDrawer sendInvoicer={ props.sendNewInvoiceTC} />) 
       : (<>
           {" "}
           <ActionPartDrawer />{" "}

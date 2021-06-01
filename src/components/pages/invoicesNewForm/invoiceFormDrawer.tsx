@@ -66,7 +66,7 @@ const InvoicesFormDrawer: React.FC<any> = (props) => {
             name="comment"
             label="Comment"
             component={renderField}
-            validate={[inputCondition.required, maxLength10, minLength2]}
+            validate={[inputCondition.required, inputCondition.maxLength(30), minLength2]}
           />{" "}
         </div>
 

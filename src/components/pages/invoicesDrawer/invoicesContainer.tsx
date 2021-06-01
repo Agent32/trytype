@@ -1,7 +1,7 @@
 import { ReactElement, useEffect } from "react";
 import { connect } from "react-redux";
 import { serverAL } from "../../../api/api";
-import { getInvoicesTC,changeShowingPanel } from "../../../store/invoicesReducer";
+import { getInvoicesTC,changeShowingPanel,sendNewInvoiceTC } from "../../../store/invoicesReducer";
 import { globalStateType } from "../../../store/store";
 import { invoiceType, invoicesSettingsType } from "../../../store/types/storeTypes";
 
@@ -12,6 +12,7 @@ export type propsType = {
   getInvoicesTC: Function;
   invoiceSettings: invoicesSettingsType
   changeShowingPanel: Function
+  sendNewInvoiceTC: Function
   
 };
 
@@ -20,14 +21,9 @@ function InvoiceConnect(props: propsType): ReactElement<propsType> {
     props.getInvoicesTC();
   }, []);
 
-  const sendInvoicer = (data: invoiceType) => {
-   // serverAL.newInvoice(data)   
-   console.log(data)
-   props.changeShowingPanel()
- 
-}
 
-  return <InvoicesDrawer {...props} sendInvoicer={sendInvoicer}/>;
+
+  return <InvoicesDrawer {...props} />;
 }
 
 // ========================================
@@ -38,6 +34,6 @@ const mapStateToProps = (state: globalStateType) => {
   } as const;
 };
 
-const InvoicerCC = connect(mapStateToProps, { changeShowingPanel, getInvoicesTC })(InvoiceConnect);
+const InvoicerCC = connect(mapStateToProps, { changeShowingPanel, getInvoicesTC,sendNewInvoiceTC })(InvoiceConnect);
 
 export default InvoicerCC;
