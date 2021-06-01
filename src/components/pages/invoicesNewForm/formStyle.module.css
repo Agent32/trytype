@@ -7,17 +7,16 @@
 
 }
 
-.field
+.lable
 {
-    
+  
 }
 
 
 
 .erors
 {
-    border: 2px solid red;
-    padding-bottom: 4px;
+   color:red
 
 }
 
@@ -41,7 +40,7 @@
 .main  .actionLine
 {
 
-   
+  
    height: auto;
    width: 1fr;
    background-color:white;
@@ -50,23 +49,14 @@
    border: 2px solid gray;
    border-radius: 4px;
    Font-weight: bold;
+   
 }
 
-.main  .actionLine button
-{
-
-   background-color: rgb(0, 132, 255);
-   border-radius: 2px;
-   border: none;
-   color:white;
-   width: 80px;
-   height: 30px;
-}
 
 .main  .invoicesListStyle
 {
    
-
+ 
 
    height: auto;
    width: 1fr;
@@ -79,6 +69,24 @@
 }
 
 
+.main  .invoicesListStyle .sendForm
+{
+
+   background-color: rgb(0, 132, 255);
+   border-radius: 2px;
+   border: none;
+   color:white;
+   width: 80px;
+   height: 30px;
+}
+
+.main  .invoicesListStyle .disable
+{
+
+   background-color:gray;
+ 
+}
+
 
 .main  .invoicesListStyle .Colum 
 {
@@ -87,25 +95,13 @@
 
    padding-right: 50px;
 height: auto;
-text-align: center;
-
+text-align: left;
+padding: 5px;
 }
 
-.main  .headStyle
-{
- background-color:darkgray;
 
-}
 
-.main  .invoicesListStyle .Colum .number
-{
-   color:rgb(0, 132, 255);
-   padding: 5px;
-    
-
-}
-
-.main  .invoicesListStyle .Colum Field
+.main  .invoicesListStyle .Colum .test
 {  overflow: hidden;
    white-space: nowrap;
    text-overflow:ellipsis;
@@ -114,6 +110,7 @@ text-align: center;
    height: 30px;
   
    margin-left: 50px;
-  
+
+ 
 
 }

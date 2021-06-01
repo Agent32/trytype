@@ -1,7 +1,11 @@
-import { BaseFieldArrayProps, BaseFieldProps, Field, reduxForm } from 'redux-form'
-import { inputCondition } from '../../formSettings';
-import formStyle from './formStyle.module.css'
-
+import {
+  BaseFieldArrayProps,
+  BaseFieldProps,
+  Field,
+  reduxForm,
+} from "redux-form";
+import { inputCondition } from "../../formSettings";
+import formStyle from "./formStyle.module.css";
 
 const renderField = ({
   input,
@@ -9,105 +13,96 @@ const renderField = ({
   type,
   meta: { touched, error, warning },
 }: any) => (
-  <span
-    className={
-      formStyle.field + " " + (touched && error ? formStyle.erors : "")
-    }
-  >
-    <input
-      {...input}
-      placeholder={touched && error ? error : label}
-      type={type}
-    />
-
-    { }
-  </span>
+  <div>
+    <label className={formStyle.lable}>{label}</label>
+    <div>
+      <input {...input} placeholder={label} type={type} />
+      {touched &&
+        ((error && <div className={formStyle.erors}>{error}</div>) ||
+          (warning && <span>{warning}</span>))}
+    </div>
+  </div>
 );
 
-const maxLength10 = inputCondition.maxLength(10)
-const minLength2 = inputCondition.minLength(2)
-
-
+const maxLength10 = inputCondition.maxLength(10);
+const minLength2 = inputCondition.minLength(2);
 
 const InvoicesFormDrawer: React.FC<any> = (props) => {
-  const { pristine, submitting } = props
-
-
-
-
   const newForm = (props: any) => {
-    debugger
+    const { pristine, submitting } = props;
     return (
-      <form className={formStyle.actionLine} onSubmit={props.handleSubmit}>
+      <form
+        className={formStyle.invoicesListStyle}
+        onSubmit={props.handleSubmit}
+      >
         <div className={formStyle.Colum}>
-          {' '}
+          {" "}
           <Field
-            name='number'
-            label='Number'
+            name="number"
+            label="Number"
             component={renderField}
             validate={[inputCondition.required, maxLength10, minLength2]}
           />
           <Field
-            name='date_created'
-            label='Invoice Date'
+            name="date_created"
+            label="Invoice Date"
             component={renderField}
             validate={[inputCondition.required, maxLength10, minLength2]}
           />
         </div>
 
         <div className={formStyle.Colum}>
-          {' '}
+          {" "}
           <Field
-            name='date_supplied'
-            label='Supply Date'
+            name="date_supplied"
+            label="Supply Date"
             component={renderField}
             validate={[inputCondition.required, maxLength10, minLength2]}
-          />
-          {' '}
+          />{" "}
         </div>
         <div className={formStyle.Colum}>
-          {' '}
+          {" "}
           <Field
-            name='comment'
-            label='Comment'
+            name="comment"
+            label="Comment"
             component={renderField}
             validate={[inputCondition.required, maxLength10, minLength2]}
-          />
-          {' '}
+          />{" "}
         </div>
 
-
         <div className={formStyle.Colum}>
-          {' '}
-          <button type='submit' disabled={pristine || submitting}>
-            {' '}
-            Send{' '}
-          </button>{' '}
+          {" "}
+          <button
+            type="submit"
+            className={
+              formStyle.sendForm +
+              " " +
+              (pristine || submitting ? formStyle.disable : "")
+            }
+            disabled={pristine || submitting}
+          >
+            Send
+          </button>{" "}
         </div>
       </form>
-
-    )
-  }
+    );
+  };
 
   const ContactForm = reduxForm({
-    form: 'registerForm'
-  })(newForm)
+    form: "registerForm",
+  })(newForm);
   //------------------------------------------------
-  const test = (data: any) => { console.log(data) }
+  const test = (data: any) => {
+    console.log(data);
+  };
+  //sendNewInvoice  props.sendInvoicer
 
-
-
-  //-----------------------------------------    
+  //-----------------------------------------
   return (
     <div className={formStyle.main}>
-      <div className={formStyle.heading}> {`Create Invoice`} </div>
-
-      <ContactForm onSubmit={test} />
-
+      <ContactForm onSubmit={props.sendInvoicer} />
     </div>
-  )
-}
+  );
+};
 
-
-
-export default InvoicesFormDrawer
+export default InvoicesFormDrawer;

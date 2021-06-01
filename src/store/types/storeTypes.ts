@@ -7,9 +7,9 @@ export type invoiceType =
     date_supplied: string | null,
     comment: string | null,
   }
-type invoicesSettingsType =
+export type invoicesSettingsType =
   {
-
+    needShowForm:boolean
   }
 
 
