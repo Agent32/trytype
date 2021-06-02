@@ -25,6 +25,7 @@ const renderField = ({
 );
 
 const maxLength10 = inputCondition.maxLength(10);
+const maxLength30 = inputCondition.maxLength(30);
 const minLength2 = inputCondition.minLength(2);
 
 const InvoicesFormDrawer: React.FC<any> = (props) => {
@@ -66,7 +67,7 @@ const InvoicesFormDrawer: React.FC<any> = (props) => {
             name="comment"
             label="Comment"
             component={renderField}
-            validate={[inputCondition.required, inputCondition.maxLength(30), minLength2]}
+            validate={[inputCondition.required, maxLength30, minLength2]}
           />{" "}
         </div>
 
